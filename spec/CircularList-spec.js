@@ -1,10 +1,13 @@
-if (typeof require != 'undefined') {
-	// For node.
-	var CircularList = require('../lib/CircularList.js');
-}
+var CircularList = require('../lib/CircularList.js');
 
 describe("A CircularList,", function() {
 	var data, list;
+	
+	function listShouldNotBeEmpty() {
+		it("is not empty.", function() {
+			expect(list.isEmpty()).toEqual(false);
+		});
+	}
 	
 	describe("when newly created without any data,", function() {
 		beforeEach(function() {
@@ -25,9 +28,8 @@ describe("A CircularList,", function() {
 			it("toArray returns an array with only the new item.", function() {
 				expect(list.toArray()).toEqual([ nextData ]);
 			});
-			it("is not empty.", function() {
-				expect(list.isEmpty()).toEqual(false);
-			});
+
+			listShouldNotBeEmpty();
 		});
 	});
 	
@@ -46,9 +48,7 @@ describe("A CircularList,", function() {
 			expect(list.toArray()).toEqual([ data ]);
 		});
 		
-		it("is not empty.", function() {
-			expect(list.isEmpty()).toEqual(false);
-		});
+		listShouldNotBeEmpty();
 		
 		describe("and a data item is pushed after it,", function() {
 			var nextData;
@@ -101,34 +101,45 @@ describe("A CircularList,", function() {
 				thirdNode.hide();
 			});
 			
-			it("toArray returns only the non hidden items.", function() {
-				var expected = dataItems.slice();
-				expected.splice(2, 1);
-				expect(list.toArray()).toEqual(expected);
-			});
-			
-			it("calls the onNodeHidden function on the listener", function() {
-				expect(callbacks).toEqual([thirdNode]);
-			});
-			
-			describe("then restored,", function() {
-				beforeEach(function() {
-					callbacks = [];
-					listener.onNodeRestored = function(node) {
-						callbacks.push(node);
-					};
-					thirdNode.restore();
+			function check_A_Hidden_Third_Node() {
+				it("toArray returns only the non hidden items.", function() {
+					var expected = dataItems.slice();
+					expected.splice(2, 1);
+					expect(list.toArray()).toEqual(expected);
 				});
 				
-				it("toArray returns all the data items.", function() {
-					expect(list.toArray()).toEqual(dataItems);
-				});
-				
-				it("calls the onNodeRestored function on the listener", function() {
+				it("calls the onNodeHidden function once on the listener", function() {
 					expect(callbacks).toEqual([thirdNode]);
 				});
-			});
+				
+				describe("then restored,", function() {
+					beforeEach(function() {
+						callbacks = [];
+						listener.onNodeRestored = function(node) {
+							callbacks.push(node);
+						};
+						thirdNode.restore();
+					});
+					
+					it("toArray returns all the data items.", function() {
+						expect(list.toArray()).toEqual(dataItems);
+					});
+					
+					it("calls the onNodeRestored function on the listener", function() {
+						expect(callbacks).toEqual([thirdNode]);
+					});
+				});
+			}
+			
+			check_A_Hidden_Third_Node();
+			describe("and hidden is called a second time, it makes no difference; ", function() {
+				beforeEach(function() {
+					thirdNode.hide();
+				});
+				check_A_Hidden_Third_Node();
+			})
 		});
+		
 		describe("and a two item chain is spliced into it after the third node,", function() {
 			var newChain, newData;
 			beforeEach(function() {
