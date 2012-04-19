@@ -1,65 +1,113 @@
 <html>
 <head>
-    <title>dancing-links</title>
-    <link rel="stylesheet" type="text/css" href="style.bundle.css" />
+<title>dancing-links</title>
+<link rel="stylesheet" type="text/css" href="style.bundle.css" />
 </head>
 <body>
-	<h1>dancing-links</h1>
-	<p>This is the dancing-links project dev-server.  As well as something you can run yourself, you can also access it <a href="http://dancing-links.herokuapp.com/">on heroku</a>.</p>
-	
-	<p>API documentation is served from <a href="doc">here</a>.  This page has the source loaded - open up a console and try creating a new SudokuSolver.</p>
-	
-	<p>This project implements <a href="http://en.wikipedia.org/wiki/Donald_Knuth">Donald Knuths</a> <a href="http://en.wikipedia.org/wiki/Knuth's_Algorithm_X">algorithm X</a> in javascript using the <a href="http://en.wikipedia.org/wiki/Dancing_Links">dancing links</a> data structure.  The intention is that the code be documented, readable, with tests, and that it can work on node.js, in the browser or in Rhino.</p>
-	
-	<h2>Exact Cover Problem</h2>
-	
-	<p>The Exact Cover Problem is an optimisation problem.  Given a set of constraints that must be satisfied and a set of choices, each of which satisfies one or more of the constraints, you need to select a subset of the possible choices that ensures that every constraint is satisfied once and only once.</p>
-	
-	<p>Here's my favourite explanation:</p>
-	
-	<blockquote>
-	<p>Lets say, you're doing your exam for your piano grade. Lets think of the columns not as columns, but as a precise list of tricks you must show to the examiner that you are able to do before he/she can give you the pass. The examiner is also very easily bored, and will immediately fail you if you do the same trick twice. 
-	Now, think of the rows not as rows, but as an exact song list you can choose from to play to the examiner. You may choose one or more songs from your list of songs. You can choose to play all the songs in your list.
-	Songs can show the examiner different tricks, so she/he can mark you off for them.
-	You must pick a set of songs such that every trick on the examiner's list is fufilled exactly once.</p>
-	
-	<p>-- <a href="http://cgi.cse.unsw.edu.au/%7Exche635/dlx_sodoku/">Xi Chen</a></p>
-	</blockquote>
-	
-	<p>As it turns out, a number of well known problems can be represented as Exact Cover problems, such as Sudoku, Pentonimos, N-Queens.</p>
-	
-	<h2>Getting Started</h2>
-	
-	<p>Check the code out with git from the <a href="https://github.com/kybernetikos/dancing-links">github repository</a>: git://github.com/kybernetikos/dancing-links.git</p>
+    	<h1>dancing-links</h1>
+		<p>
+				This is the dancing-links project dev-server. As well as something you can run yourself, you can also access it <a
+						href="http://dancing-links.herokuapp.com/">on heroku</a>.
+		</p>
 
-    <p>You can also access it on [cloud9](http://c9.io/kybernetikos/dancing-links).</p>
+		<p>
+				API documentation is served from <a href="doc">here</a>. This page has the source loaded - open up a console and try creating
+				a new SudokuSolver.
+		</p>
 
-	<p>You can run the tests by using </p>
-	
-	<pre><code>npm test
-	</code></pre>
-	
-	<p>inside the project, or you can run them with build\runtests.cmd (I have been developing in eclipse on windows).</p>
-	
-	<p>Within eclipse you can use 'debug as rhino' on the rhino-index.js file to see some sudoku solved (very slow - node is much faster).</p>
-	
-	<p>You can run the devserver after getting the dependencies with </p>
-	
-	<pre><code>npm install 
+		<p>
+				This project implements <a href="http://en.wikipedia.org/wiki/Donald_Knuth">Donald Knuths</a> <a
+						href="http://en.wikipedia.org/wiki/Knuth's_Algorithm_X">algorithm X</a> in javascript using the <a
+						href="http://en.wikipedia.org/wiki/Dancing_Links">dancing links</a> data structure. The intention is that the code be
+				documented, readable, with tests, and that it can work on node.js, in the browser or in Rhino.
+		</p>
+
+		<h2>Exact Cover Problem</h2>
+
+		<p>The Exact Cover Problem is an optimisation problem. Given a set of constraints that must be satisfied and a set of
+				choices, each of which satisfies one or more of the constraints, you need to select a subset of the possible choices that
+				ensures that every constraint is satisfied once and only once.</p>
+
+		<p>Here's my favourite explanation:</p>
+
+		<blockquote>
+				<p>Lets say, you're doing your exam for your piano grade. Lets think of the columns not as columns, but as a precise list
+						of tricks you must show to the examiner that you are able to do before he/she can give you the pass. The examiner is also
+						very easily bored, and will immediately fail you if you do the same trick twice. Now, think of the rows not as rows, but as
+						an exact song list you can choose from to play to the examiner. You may choose one or more songs from your list of songs.
+						You can choose to play all the songs in your list. Songs can show the examiner different tricks, so she/he can mark you off
+						for them. You must pick a set of songs such that every trick on the examiner's list is fufilled exactly once.</p>
+
+				<p>
+						-- <a href="http://cgi.cse.unsw.edu.au/%7Exche635/dlx_sodoku/">Xi Chen</a>
+				</p>
+		</blockquote>
+
+		<p>As it turns out, a number of well known problems can be represented as Exact Cover problems, such as Sudoku, Pentonimos,
+				N-Queens.</p>
+
+		<h2>Getting Started</h2>
+
+		<p>
+				Check the code out with git from the <a href="https://github.com/kybernetikos/dancing-links">github repository</a>:
+				git://github.com/kybernetikos/dancing-links.git
+		</p>
+
+		<p>You can also access it on <a href="http://c9.io/kybernetikos/dancing-links">cloud9</a>.</p>
+
+		<p>You can run the tests by using</p>
+
+		<pre><code>npm test
+	</code>
+	</pre>
+
+		<p>inside the project, or you can run them with build\runtests.cmd (I have been developing in eclipse on windows).</p>
+
+		<p>Within eclipse you can use 'debug as rhino' on the rhino-index.js file to see some sudoku solved (very slow - node is
+				much faster).</p>
+
+		<p>You can run the devserver after getting the dependencies with</p>
+
+		<pre><code>npm install 
 npm start
-	</code></pre>
-	
-	<p>Which will start up a web server that serves the bundled js file containing all the code so you can access the files from the browser.  It will also automatically rebuild and serve the jsdoc too.</p>
+	</code>
+	</pre>
 
-	<h2>Try the code in the browser</h2>
-	
-	<p>Open up the debugging console on this browser and try the following:</p>
-	
-	<pre onclick='var s = new SudokuSolver();alert(s.showBoard(s.solve(".6.3..8.4537.9.....4...63.7.9..51238.........71362..4.3.64...1.....6.5231.2..9.8.")[0]));'><code>var solver = new SudokuSolver();
-alert(solver.showBoard(solver.solve(".6.3..8.4537.9.....4...63.7.9..51238.........71362..4.3.64...1.....6.5231.2..9.8.")[0]));</code></pre>
+		<p>Which will start up a web server that serves the bundled js file containing all the code so you can access the files from
+				the browser. It will also automatically rebuild and serve the jsdoc too.</p>
 
-	<p>Alternatively, just click on the code above to execute it.</p>
-	
-	<script type="text/javascript" src="code.bundle.js"></script>
+		<h2>Try the code in the browser</h2>
+
+		<p>Try it here:
+			<pre id='puzzleDisplay'></pre>
+			<input id='puzzle' onkeyup='puzzleUpdated()' value='.6.3..8.4537.9.....4...63.7.9..51238.........71362..4.3.64...1.....6.5231.2..9.8.' style='width: 43em' />
+			<button onclick='solveEnteredValue()'>Solve</button>
+		</p>
+    	
+        <p>Alternatively open up the debugging console on this browser and try the following:</p>
+
+		<pre><code>alert(solver.showBoard(solver.solve(".6.3..8.4537.9.....4...63.7.9..51238.........71362..4.3.64...1.....6.5231.2..9.8.")[0]));</code></pre>
+
+		<script type="text/javascript" src="code.bundle.js"></script>
+		
+		<script type="text/javascript">
+			var solver = new SudokuSolver();
+			
+			function solveEnteredValue() {
+				var puzzle = document.getElementById('puzzle').value;
+				var solutions = solver.solve(puzzle, 20, 1000);
+				if (solutions.length < 1) {
+					alert('No solutions found.');
+				} else {
+					document.getElementById('puzzleDisplay').innerHTML = solver.showBoard(solutions[0]);
+				}
+			}
+			
+			function puzzleUpdated() {
+				document.getElementById('puzzleDisplay').innerHTML = solver.showBoard(document.getElementById('puzzle').value);
+			}
+			
+			puzzleUpdated();
+		</script>
 </body>
 </html>
