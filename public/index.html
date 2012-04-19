@@ -1,7 +1,7 @@
 <html>
 <head>
     <title>dancing-links</title>
-	<link rel="stylesheet" type="text/css" href="style.bundle.css" />
+    <link rel="stylesheet" type="text/css" href="style.bundle.css" />
 </head>
 <body>
 	<h1>dancing-links</h1>
@@ -51,6 +51,15 @@ npm start
 	
 	<p>Which will start up a web server that serves the bundled js file containing all the code so you can access the files from the browser.  It will also automatically rebuild and serve the jsdoc too.</p>
 
+	<h2>Try the code in the browser</h2>
+	
+	<p>Open up the debugging console on this browser and try the following:</p>
+	
+	<pre onclick='var s = new SudokuSolver();alert(s.showBoard(s.solve(".6.3..8.4537.9.....4...63.7.9..51238.........71362..4.3.64...1.....6.5231.2..9.8.")[0]));'><code>var solver = new SudokuSolver();
+alert(solver.showBoard(solver.solve(".6.3..8.4537.9.....4...63.7.9..51238.........71362..4.3.64...1.....6.5231.2..9.8.")[0]));</code></pre>
+
+	<p>Alternatively, just click on the code above to execute it.</p>
+	
 	<script type="text/javascript" src="code.bundle.js"></script>
 </body>
 </html>
