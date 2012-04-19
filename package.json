@@ -4,6 +4,7 @@
   "description": "An implementation of Algorithm X that uses dancing links.",
   "author": "kybernetikos@gmail.com",
   "dependencies": {},
+  "main": "./index.js",
   "devDependencies": {
     "jasmine-node": "1.0.x",
     "express": "2.x.x",
@@ -14,5 +15,18 @@
     "request": "2.9.x",
     "step": "0.0.5"
   },
+  "scripts": {
+    "start": "node ./build/devserver.js",
+    "test": "node node_modules/jasmine-node/lib/jasmine-node/cli.js spec --verbose --color"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kybernetikos/dancing-links.git"
+  },
+  "keywords": [
+    "exactcover",
+    "algorithm",
+    "dlx"
+  ],
   "engine": "node >= 0.6.0"
 }
