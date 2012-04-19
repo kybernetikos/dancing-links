@@ -13,9 +13,8 @@
     "url": "https://github.com/kybernetikos/dancing-links.git"
   },
   "author": "kybernetikos@gmail.com",
-  "dependencies": {},
   "main": "./index.js",
-  "devDependencies": {
+  "dependencies": {
     "jasmine-node": "1.0.x",
     "express": "2.x.x",
     "connect-assetmanager": "0.0.26",
