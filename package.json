@@ -1,7 +1,31 @@
 {
   "name": "dancing-links",
-  "version": "0.1.0",
   "description": "An implementation of Algorithm X that uses dancing links.",
+  "version": "0.1.0",
+  "keywords": [
+    "exactcover",
+    "algorithm",
+    "dlx"
+  ],
+  "maintainers":[ {
+   		"name": "kybernetikos",
+   		"email": "kybernetikos@gmail.com",
+  		"web": "http://kybernetikos.com",
+  }],
+  "contributors":[ {
+   		"name": "kybernetikos",
+   		"email": "kybernetikos@gmail.com",
+  		"web": "http://kybernetikos.com",
+  }],
+  "bugs": "https://github.com/kybernetikos/dancing-links/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kybernetikos/dancing-links.git"
+  },
+  "repositories": [{
+    "type": "git",
+    "url": "https://github.com/kybernetikos/dancing-links.git"
+  }],
   "author": "kybernetikos@gmail.com",
   "dependencies": {},
   "main": "./index.js",
@@ -19,14 +43,5 @@
     "start": "node ./build/devserver.js",
     "test": "node node_modules/jasmine-node/lib/jasmine-node/cli.js spec --verbose --color"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/kybernetikos/dancing-links.git"
-  },
-  "keywords": [
-    "exactcover",
-    "algorithm",
-    "dlx"
-  ],
   "engine": "node >= 0.6.0"
 }
