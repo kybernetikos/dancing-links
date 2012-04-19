@@ -1,8 +1,9 @@
 dancing-links
 =============
 
-This is the dancing-links project.  A project that implements [Donald Knuths](http://en.wikipedia.org/wiki/Donald_Knuth) [algorithm X](http://en.wikipedia.org/wiki/Knuth's_Algorithm_X) in javascript using the [dancing links](http://en.wikipedia.org/wiki/Dancing_Links) data structure.  The intention is that the code be documented, readable, with tests, and that it can work on node.js, in the browser or in Rhino.
+This is the dancing-links project.  A project that implements [Donald Knuths](http://en.wikipedia.org/wiki/Donald_Knuth) [algorithm X](http://en.wikipedia.org/wiki/Knuth's_Algorithm_X) in javascript using the [dancing links](http://en.wikipedia.org/wiki/Dancing_Links) data structure.  The intention is that the code be [documented](http://dancing-links.herokuapp.com/doc/), readable, with tests (that can run on [cloud9](http://c9.io/kybernetikos/dancing-links)), and that it can work on node.js, in the browser or in Rhino.
 
+You can run the project dev server yourself or you can access it on [heroku](http://dancing-links.herokuapp.com/).
 
 Exact Cover Problem
 -------------------
