@@ -7,25 +7,11 @@
     "algorithm",
     "dlx"
   ],
-  "maintainers":[ {
-   		"name": "kybernetikos",
-   		"email": "kybernetikos@gmail.com",
-  		"web": "http://kybernetikos.com",
-  }],
-  "contributors":[ {
-   		"name": "kybernetikos",
-   		"email": "kybernetikos@gmail.com",
-  		"web": "http://kybernetikos.com",
-  }],
   "bugs": "https://github.com/kybernetikos/dancing-links/issues",
   "repository": {
     "type": "git",
     "url": "https://github.com/kybernetikos/dancing-links.git"
   },
-  "repositories": [{
-    "type": "git",
-    "url": "https://github.com/kybernetikos/dancing-links.git"
-  }],
   "author": "kybernetikos@gmail.com",
   "dependencies": {},
   "main": "./index.js",
