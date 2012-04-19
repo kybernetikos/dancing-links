@@ -4,3 +4,6 @@ body
   
 p
   padding-left 20px
+
+pre
+  padding-left 40px
