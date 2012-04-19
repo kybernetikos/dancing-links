@@ -1,12 +1,55 @@
 <html>
 <head>
-	<title>dancing-links</title>
+    <title>dancing-links</title>
 	<link rel="stylesheet" type="text/css" href="style.bundle.css" />
 </head>
 <body>
 	<h1>dancing-links</h1>
 	<p>This is the dancing-links project.</p>
-	<p>API documentation is served from <a href="doc">here</a>.</p>
+	
+	<p>API documentation is served from <a href="doc">here</a>.  This page has the source loaded - open up a console and try creating a new SudokuSolver.</p>
+	
+	<article class="markdown-body entry-content" itemprop="mainContentOfPage"><h1>dancing-links</h1>
+
+	<p>This is the dancing-links project.  A project that implements <a href="http://en.wikipedia.org/wiki/Donald_Knuth">Donald Knuths</a> <a href="http://en.wikipedia.org/wiki/Knuth's_Algorithm_X">algorithm X</a> in javascript using the <a href="http://en.wikipedia.org/wiki/Dancing_Links">dancing links</a> data structure.  The intention is that the code be documented, readable, with tests, and that it can work on node.js, in the browser or in Rhino.</p>
+	
+	<h2>Exact Cover Problem</h2>
+	
+	<p>The Exact Cover Problem is an optimisation problem.  Given a set of constraints that must be satisfied and a set of choices, each of which satisfies one or more of the constraints, you need to select a subset of the possible choices that ensures that every constraint is satisfied once and only once.</p>
+	
+	<p>Here's my favourite explanation:</p>
+	
+	<blockquote>
+	<p>Lets say, you're doing your exam for your piano grade. Lets think of the columns not as columns, but as a precise list of tricks you must show to the examiner that you are able to do before he/she can give you the pass. The examiner is also very easily bored, and will immediately fail you if you do the same trick twice. 
+	Now, think of the rows not as rows, but as an exact song list you can choose from to play to the examiner. You may choose one or more songs from your list of songs. You can choose to play all the songs in your list.
+	Songs can show the examiner different tricks, so she/he can mark you off for them.
+	You must pick a set of songs such that every trick on the examiner's list is fufilled exactly once.</p>
+	
+	<p>-- <a href="http://cgi.cse.unsw.edu.au/%7Exche635/dlx_sodoku/">Xi Chen</a></p>
+	</blockquote>
+	
+	<p>As it turns out, a number of well known problems can be represented as Exact Cover problems, such as Sudoku, Pentonimos, N-Queens.</p>
+	
+	<h2>Getting Started</h2>
+	
+	<p>Check the code out with git from the <a href="https://github.com/kybernetikos/dancing-links">github repository</a>: git://github.com/kybernetikos/dancing-links.git</p>
+	
+	<p>You can run the tests by using </p>
+	
+	<pre><code>npm test
+	</code></pre>
+	
+	<p>inside the project, or you can run them with build\runtests.cmd (I have been developing in eclipse on windows).</p>
+	
+	<p>Within eclipse you can use 'debug as rhino' on the rhino-index.js file to see some sudoku solved (very slow - node is much faster).</p>
+	
+	<p>You can run the devserver after getting the dependencies with </p>
+	
+	<pre><code>npm install 
+npm start
+	</code></pre>
+	
+	<p>Which will start up a web server that serves the bundled js file containing all the code so you can access the files from the browser.  It will also automatically rebuild and serve the jsdoc too.</p></article>
 
 	<script type="text/javascript" src="code.bundle.js"></script>
 </body>
