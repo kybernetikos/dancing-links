@@ -2,6 +2,7 @@
   "name": "dancing-links",
   "description": "An implementation of Algorithm X that uses dancing links.",
   "version": "0.1.0",
+  "engines": {"node": ">= 0.6.0"},
   "keywords": [
     "exactcover",
     "algorithm",
@@ -27,6 +28,5 @@
   "scripts": {
     "start": "node ./build/devserver.js",
     "test": "node node_modules/jasmine-node/lib/jasmine-node/cli.js spec --verbose --color"
-  },
-  "engine": "node >= 0.6.0"
+  }
 }
