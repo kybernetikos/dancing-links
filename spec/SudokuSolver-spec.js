@@ -28,10 +28,10 @@ describe("A SudokuSolver,", function() {
 			var foundSolutions = sudokuSolver.solve(problem);
 			var took = new Date().getTime() - startTime;
 
-			// NON FUNCTIONAL: PERFORMANCE should solve these puzzles in less than 10 seconds.
-			expect(took < 10000).toEqual(true);
-			
 			expect(foundSolutions).toEqual(expectedSolutions[i])
+
+			// NON FUNCTIONAL: PERFORMANCE: should solve these puzzles in less than 10 seconds.
+			expect(took < 10000).toEqual(true);
 		}
 	
 	});
