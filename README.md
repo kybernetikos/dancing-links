@@ -9,4 +9,3 @@ This is the dancing-links project.
  * API documentation is available on the dev server, either on your own machine or on [heroku](http://dancing-links.herokuapp.com/doc).
 
 For more information check out the <a href="http://dancing-links.herokuapp.com/">project server</a>.
-
