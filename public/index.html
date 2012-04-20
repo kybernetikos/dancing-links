@@ -14,17 +14,14 @@
 					<li>API documentation on the <a href="http://dancing-links.herokuapp.com/doc">heroku dev server</a> or on this server <a href="doc">here</a>.</li>
 				</ul>
 		</p>
-		<p>
-				This page has the source loaded - open up a console and try creating a new SudokuSolver.  The intention is that this code be	documented, readable,
-				with tested, and that it can work on node.js, in the browser or in Rhino.
-		</p>
 
 		<h2>Background</h2>
 		<p>
 				This project implements <a href="http://en.wikipedia.org/wiki/Knuth's_Algorithm_X">algorithm X</a> (as described by
 				 <a href="http://en.wikipedia.org/wiki/Donald_Knuth">Donald Knuth</a>) in javascript using the <a
-						href="http://en.wikipedia.org/wiki/Dancing_Links">dancing links</a> data structure. The <a href="http://arxiv.org/pdf/cs/0011047v1.pdf">paper</a>
-				is readable and interesting.
+						href="http://en.wikipedia.org/wiki/Dancing_Links">dancing links</a> data structure. Knuth's <a href="http://arxiv.org/pdf/cs/0011047v1.pdf">paper</a>
+				is readable and interesting (with diagrams that definitely help).   The intention is that this code be documented, readable,
+				tested, and that it can work on node.js, in the browser or in Rhino.
 		</p>
 
 		<h2>Exact Cover Problem</h2>
@@ -60,14 +57,11 @@
 
 		<p>You can also access it on <a href="http://c9.io/kybernetikos/dancing-links">cloud9</a>.</p>
 
-		<p>You can run the tests by using</p>
+		<p>Ideally you would have node.js installed, in which case you can run the tests by using</p>
 
 		<pre><code>npm test</code></pre>
 
 		<p>inside the project, or you can run them with build\runtests.cmd (I have been developing in eclipse on windows).</p>
-
-		<p>Within eclipse you can use 'debug as rhino' on the rhino-index.js file to see some sudoku solved (very slow - node is
-				much faster).</p>
 
 		<p>You can run the devserver after getting the dependencies with</p>
 
@@ -77,6 +71,9 @@ npm start</code></pre>
 		<p>Which will start up a web server that serves the bundled js file containing all the code so you can access the files from
 				the browser. It will also automatically rebuild and serve the jsdoc too.</p>
 
+		<p>If you don't have node, within eclipse you can use 'debug as rhino' on the rhino-index.js file to see some sudoku solved 
+		(very slow - node is much faster).</p>
+
 		<h2>Try the code in the browser</h2>
 
 		<p>Try it here:
@@ -85,7 +82,7 @@ npm start</code></pre>
 			<button onclick='solveEnteredValue()'>Solve</button>
 		</p>
     	
-    <p>Alternatively open up the debugging console on this browser and try the following:</p>
+    <p>This page has the source loaded so you could alternatively open up the debugging console on this browser and try the following:</p>
 
 		<pre><code>alert(solver.showBoard(solver.solve(".6.3..8.4537.9.....4...63.7.9..51238.........71362..4.3.64...1.....6.5231.2..9.8.")[0]));</code></pre>
 
