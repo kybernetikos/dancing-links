@@ -28,7 +28,7 @@ describe("A SudokuSolver,", function() {
 			var foundSolutions = sudokuSolver.solve(problem);
 			var took = new Date().getTime() - startTime;
 
-			expect(foundSolutions).toEqual(expectedSolutions[i])
+			expect(foundSolutions[0]).toEqual(expectedSolutions[i][0])
 
 			// NON FUNCTIONAL: PERFORMANCE: should solve these puzzles in less than 10 seconds.
 			expect(took < 10000).toEqual(true);

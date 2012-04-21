@@ -74,40 +74,136 @@ npm start</code></pre>
 		<p>If you don't have node, within eclipse you can use 'debug as rhino' on the rhino-index.js file to see some sudoku solved 
 		(very slow - node is much faster).</p>
 
-		<h2>Try the code in the browser</h2>
+		<h2>The Code</h2>
+		
+		<p>Algorithm X works by searching all the possibilities, back-tracking as soon as it finds that a certain option isn't working.
+		See Knuth's <a href="http://arxiv.org/pdf/cs/0011047v1.pdf">paper</a> for more details.</p>
+		
+		<p>Dancing links is a particular way of implementing algorithm X that turns out to perform well in many cases.</p>
+		
+		<p>Picture the problem as being written out in table form.  Each column represents a <tt>Constraint</tt>, something that must
+		be satisfied exactly once in any solution.  For Sudoku, an example constraint is 'there must be a 1 in the first row'.  For Polyonimos
+		an example constraint is 'the square piece must be placed somewhere on the board'. In the example above, the piano techniques
+		are the <tt>Constraints</tt>. The rows represent <tt>Choice</tt>s that you can make.  In the above example, these are the piano pieces
+		that you select from.  In Sudoku, a choice might be 'write 3 in the first cell of the first column'.  In polyonimos, a choice might
+		be 'place the square piece so it's top left corner is at 0,0'.</p>
+		
+		<p>Typically, there will be many hundreds of rows and columns to adequately capture a problem.</p>
+		
+		<p>Dancing links is a technique to make it very quick to remove things from this table and then add them again if it didn't work out.</p>
+		
+		<p>The code has a generic dancing links implementation called <tt>Network</tt>, and extra code that uses that <tt>Network</tt> to 
+		solve specific puzzles, like Sudoku or Polyonimos.</p>
+
+		<h2>Sudoku</h2>
+
+    <p>Sudoku can be represented as an exact cover problem.  There is a constraint for each number in each row, column and area. (i.e. a
+    constraint that there be a 1 in row 1 (and likewise for each row, column and area), a constraint that there be a 2 in row 1 (and likewise
+    for each row, column and area).</p>
+    <p>The choices are for each cell, a number being written into it. So one choice might be '1 in cell 1', another might be '2 in cell 1'.</p>
 
 		<p>Try it here:
 			<pre id='puzzleDisplay'></pre>
-			<input id='puzzle' onkeyup='puzzleUpdated()' value='.6.3..8.4537.9.....4...63.7.9..51238.........71362..4.3.64...1.....6.5231.2..9.8.' style='width: 43em' />
-			<button onclick='solveEnteredValue()'>Solve</button>
+			<input id='puzzle' onkeyup='sudokuUpdated()' value='.6.3..8.4537.9.....4...63.7.9..51238.........71362..4.3.64...1.....6.5231.2..9.8.' style='width: 43em' />
+			<button onclick='solveEnteredSudoku()'>Solve</button>
 		</p>
-    	
-    <p>This page has the source loaded so you could alternatively open up the debugging console on this browser and try the following:</p>
 
-		<pre><code>alert(solver.showBoard(solver.solve(".6.3..8.4537.9.....4...63.7.9..51238.........71362..4.3.64...1.....6.5231.2..9.8.")[0]));</code></pre>
+		<h2>Polyonimos</h2>
+
+		<p>Polyonimos can also be represented as an exact cover problem.  There are two kinds of constraints, cell constriants, which 
+		represent the fact that every cell must be covered, and shape constraints, which represent the fact that every shape must be used.</p>
+		
+		<p>There is a choice for every place that each shape can be placed.</p>
+
+		<canvas id='canvas' width="240" height="240"></canvas>
+		<canvas id='blocksDisplay' width="400" height="240"></canvas>
+		<button onclick='solvePoly()'>Solve</button>
 
 		<!--  Code here..  -->
 	
 		<script type="text/javascript" src="code.bundle.js"></script>
 		
 		<script type="text/javascript">
-			var solver = new SudokuSolver();
+			// Sudoku code........
 			
-			function solveEnteredValue() {
+			var sudokuSolver = new SudokuSolver();
+			
+			function solveEnteredSudoku() {
 				var puzzle = document.getElementById('puzzle').value;
-				var solutions = solver.solve(puzzle, 20, 1000);
+				var solutions = sudokuSolver.solve(puzzle, 20, 1000);
 				if (solutions.length < 1) {
 					alert('No solutions found.');
 				} else {
-					document.getElementById('puzzleDisplay').innerHTML = solver.showBoard(solutions[0]);
+					document.getElementById('puzzleDisplay').innerHTML = sudokuSolver.showBoard(solutions[0]);
 				}
 			}
 			
-			function puzzleUpdated() {
-				document.getElementById('puzzleDisplay').innerHTML = solver.showBoard(document.getElementById('puzzle').value);
+			function sudokuUpdated() {
+				document.getElementById('puzzleDisplay').innerHTML = sudokuSolver.showBoard(document.getElementById('puzzle').value);
 			}
 			
-			puzzleUpdated();
+			sudokuUpdated();
+			
+			// Polyonimo code......
+			
+			var cnv = document.getElementById('canvas');
+			var g = cnv.getContext("2d");
+			
+			function displayBoard() {
+				var width = 30;
+				var height = 30;
+				g.fillStyle = "#eea";
+				g.strokeStyle = "aa8";
+				for (var x = 0; x < 8; ++x) {
+					for (var y = 0; y < 8; ++y) {
+						g.fillRect(x * width, y * height, width, height);
+						g.strokeRect(x * width, y * height, width, height);
+					}
+				}
+			}
+			
+			var shapes = [];
+			var Shape = PolyominoSolver.Shape;
+			
+			shapes.push(new Shape("#f00", [{x:0,y:0},{x:1,y:0},{x:2,y:0},{x:3,y:0},{x:4,y:0}])); // straight to right
+			shapes.push(new Shape("#0f0", [{x:0,y:0},{x:1,y:0},{x:1,y:1},{x:1,y:2},{x:1,y:3}])); // L going down to right
+			shapes.push(new Shape("#00f", [{x:0,y:0},{x:0,y:1},{x:1,y:1},{x:1,y:2},{x:1,y:3}])); // s up
+			shapes.push(new Shape("#f0f", [{x:0,y:0},{x:1,y:0},{x:1,y:1},{x:2,y:1},{x:2,y:2}])); // zigzag
+			shapes.push(new Shape("#ff0", [{x:0,y:0},{x:-1,y:0},{x:1,y:0},{x:0,y:-1},{x:0,y:1}])); // cross
+			shapes.push(new Shape("#0ff", [{x:0,y:0},{x:1,y:0},{x:0,y:1},{x:0,y:2},{x:1,y:2}])); // C
+			shapes.push(new Shape("#999", [{x:0,y:0},{x:1,y:0},{x:2,y:0},{x:1,y:1},{x:2,y:1}])); // squareplus
+			shapes.push(new Shape("#5e1", [{x:0,y:0},{x:1,y:0},{x:1,y:1},{x:2,y:0},{x:2,y:-1}])); // t leg
+			shapes.push(new Shape("#940", [{x:0,y:0},{x:1,y:0},{x:0,y:1},{x:0,y:2},{x:-1,y:2}])); // s sideway
+			shapes.push(new Shape("#ef5", [{x:0,y:0},{x:0,y:1},{x:1,y:1},{x:2,y:1},{x:0,y:2}])); // t sideway
+			shapes.push(new Shape("#4ef", [{x:0,y:0},{x:1,y:0},{x:2,y:0},{x:3,y:0},{x:2,y:-1}])); // boat
+			shapes.push(new Shape("#050", [{x:0,y:0},{x:1,y:0},{x:2,y:0},{x:2,y:-1},{x:2,y:-2}])); // backward L
+			shapes.push(new Shape("#eee", [{x:0,y:0},{x:1,y:0},{x:1,y:1},{x:0,y:1}])); // square
+			
+			var polySolver = new PolyominoSolver(8,8, shapes);
+
+			displayBoard();
+		
+			var shapeDisp = document.getElementById('blocksDisplay').getContext("2d");
+			var x = 10;
+			var y = 20;
+			for (var i = 0; i < shapes.length; ++i) {
+				shapes[i].paint(shapeDisp, x, y, 15, 15);
+				x = x + 80;
+				if (x > 400) {
+					x = 10;
+					y += 80;
+				}
+			}
+			
+			function solvePoly() {
+				var solutions = polySolver.solve();
+				var firstSolution = solutions[0];
+				for (var i = 0; i < firstSolution.length; ++i) {
+					firstSolution[i].paint(g, 0, 0, 30, 30);
+				}
+			}
+			
+			
 		</script>
 </body>
 </html>

@@ -2,6 +2,15 @@ var Network = require('../lib/Network.js');
 
 describe("A Network,", function() {
 	var network;
+	function expectSolutions(actual, expected) {
+		expect(actual.length).toEqual(expected.length);
+		for (var i = 0; i < actual.length; ++i) {
+			var aSolution = actual[i];
+			aSolution.sort();
+			expect(expected).toContain(aSolution);
+		}
+	};
+	
 	beforeEach(function() {
 		network = new Network();
 	});
@@ -13,7 +22,7 @@ describe("A Network,", function() {
 		
 		it("will solve it, returning the single solution set.", function() {
 			var solutions = network.solve();
-			expect(solutions).toEqual([["piece1"]]);
+			expectSolutions(solutions, [["piece1"]]);
 		});
 		
 		it("when solveOnce is called will return the solution set.", function() {
@@ -31,11 +40,11 @@ describe("A Network,", function() {
 		
 		it("can solve them, finding the two solution sets.", function() {
 			var solutions = network.solve();
-			expect(solutions.sort()).toEqual([["piece1", "piece2"], ["piece3"]]);
+			expectSolutions(solutions,[["piece1", "piece2"], ["piece3"]] );
 		});
 		
 		it("when solveOnce is called will return one of the two possible solutions.", function() {
-			expect([["piece1", "piece2"], ["piece3"]]).toContain(network.solveOnce().sort());
+			expect([["piece1", "piece2"], ["piece3"]]).toContain(network.solveOnce());
 		});
 	});
 	
@@ -48,7 +57,7 @@ describe("A Network,", function() {
 		});
 		it("when solved will return an empty solution set.", function() {
 			var solutions = network.solve();
-			expect(solutions).toEqual([]);
+			expect(solutions.length).toEqual(0);
 		});
 		it("when solveOnce is called will return undefined.", function() {
 			expect(network.solveOnce()).toEqual(undefined);
@@ -67,14 +76,7 @@ describe("A Network,", function() {
 		it("can solve it, finding the two solution sets.", function() {
 			var solutions = network.solve();
 			
-			solutions.sort();
-			var firstSolution = solutions[0];
-			expect(firstSolution).toContain("piece2");
-			expect(firstSolution).toContain("piece3");
-			
-			expect(solutions[1]).toEqual(["piece4"]);
-			
-			expect(solutions.length).toEqual(2);
+			expectSolutions(solutions, [["piece2", "piece3"], ["piece4"]]);
 		});
 		
 	});
